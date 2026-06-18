@@ -1,0 +1,72 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Composer dependencies
+/vendor/
+
+# Magento generated files
+/generated/*
+!/generated/code/.htaccess
+!/generated/metadata/.htaccess
+
+# Magento var directory
+/var/cache/*
+!/var/cache/.htaccess
+
+/var/page_cache/*
+!/var/page_cache/.htaccess
+
+/var/view_preprocessed/*
+!/var/view_preprocessed/.htaccess
+
+/var/composer_home/*
+/var/log/*
+!/var/log/.htaccess
+
+/var/report/*
+!/var/report/.htaccess
+
+/var/session/*
+!/var/session/.htaccess
+
+/var/tmp/*
+!/var/tmp/.htaccess
+
+# Static content
+/pub/static/*
+!/pub/static/.htaccess
+
+# Media uploads (usually not version controlled)
+/pub/media/*
+!/pub/media/.htaccess
+
+# Environment configuration
+/app/etc/env.php
+
+# Magento maintenance files
+/maintenance.flag
+
+# PHPUnit
+/phpunit.xml
+
+# Node dependencies (if frontend build tools are used)
+node_modules/
+
+# npm/yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.log
+
+# Magento import/export files
+/var/importexport/*
