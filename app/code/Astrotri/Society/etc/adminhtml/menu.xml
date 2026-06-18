@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Astrotri_Society::main" title="Society Management" translate="title" module="Astrotri_Society" sortOrder="50" parent="Astrotri_Core::main" resource="Astrotri_Society::main"/>
+
+		<add id="Astrotri_Society::manage_societies" title="Manage Societies" translate="title" module="Astrotri_Society" sortOrder="10" parent="Astrotri_Society::main" action="admin_society/society/index" resource="Astrotri_Society::manage_societies"/>
+
+		<add id="Astrotri_Society::manage_tower" title="Manage Societies Tower" translate="title" module="Astrotri_Society" sortOrder="20" parent="Astrotri_Society::main" action="admin_society/tower/index" resource="Astrotri_Society::manage_tower"/>
+
+		<add id="Astrotri_Society::manage_flat" title="Manage Societies Flat" translate="title" module="Astrotri_Society" sortOrder="30" parent="Astrotri_Society::main" action="admin_society/flat/index" resource="Astrotri_Society::manage_flat"/>
+	</menu>
+</config>
