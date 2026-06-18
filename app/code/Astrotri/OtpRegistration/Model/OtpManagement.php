@@ -5,17 +5,17 @@ namespace Astrotri\OtpRegistration\Model;
 use Astrotri\OtpRegistration\Api\OtpManagementInterface;
 use Astrotri\OtpRegistration\Helper\Data as OtpHelper;
 use Astrotri\OtpRegistration\Model\ApiResponseData;
-
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Api\AccountManagementInterface;
 use Magento\Customer\Api\Data\CustomerInterfaceFactory;
-
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Exception\LocalizedException;
-
 use Magento\Integration\Model\Oauth\TokenFactory;
-
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\Event\ManagerInterface;
+use Astrotri\OtpRegistration\Api\Data\OnboardRequestInterface;
+
+
 
 class OtpManagement implements OtpManagementInterface
 {
@@ -59,6 +59,8 @@ class OtpManagement implements OtpManagementInterface
      */
     protected $storeManager;
 
+    protected $eventManager;
+
     /**
      * Constructor
      */
@@ -70,7 +72,8 @@ class OtpManagement implements OtpManagementInterface
         TokenFactory $tokenFactory,
         OtpHelper $otpHelper,
         ApiResponseData $apiResponse,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        ManagerInterface $eventManager
     ) {
         $this->customerRepository = $customerRepository;
         $this->accountManagement = $accountManagement;
@@ -80,6 +83,7 @@ class OtpManagement implements OtpManagementInterface
         $this->otpHelper = $otpHelper;
         $this->apiResponse = $apiResponse;
         $this->storeManager = $storeManager;
+        $this->eventManager = $eventManager;
     }
 
     /**
@@ -112,7 +116,8 @@ class OtpManagement implements OtpManagementInterface
         $firstname,
         $lastname,
         $email,
-        $password = null
+        $password = null,
+        ?OnboardRequestInterface $onboardRequest = null
     ) {
 
         try {
@@ -161,6 +166,27 @@ class OtpManagement implements OtpManagementInterface
 
             /* optional login audit*/
             //$this->otpHelper->saveLoginAuditLog('OTP',$mobile,'success',null,'registration');
+
+            // Prepare event data
+
+            /*$eventData = new DataObject([
+                'customer_id'  => $createdCustomer->getId(),
+                'society_id'   => $societyId,
+                'tower_id'     => $towerId,
+                'flat_id'      => $flatId,
+                'relation'     => $relation,
+                'move_in_date' => $moveInDate,
+                'move_out_date'=> $moveOutDate
+            ]);*/
+
+            // Dispatch custom event
+            $this->eventManager->dispatch(
+                'customer_otp_registration_success',
+                [
+                    'customer' => $createdCustomer,
+                    'onboard_request' => $onboardRequest
+                ]
+            );
 
             return $this->apiResponse->success(
                 __('Customer Created Successfully')

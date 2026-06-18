@@ -4,4 +4,5 @@
 xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Astrotri\OtpRegistration\Api\OtpManagementInterface" type="Astrotri\OtpRegistration\Model\OtpManagement" />
     <preference for="Astrotri\OtpRegistration\Api\Data\ApiResponseInterface" type="Astrotri\OtpRegistration\Model\ApiResponse" />
+    <preference for="Astrotri\OtpRegistration\Api\Data\OnboardRequestInterface" type="Astrotri\OtpRegistration\Model\Data\OnboardRequest"/>
 </config>

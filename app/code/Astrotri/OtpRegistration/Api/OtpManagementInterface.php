@@ -1,6 +1,7 @@
 <?php
 
 namespace Astrotri\OtpRegistration\Api;
+use Astrotri\OtpRegistration\Api\Data\OnboardRequestInterface;
 
 interface OtpManagementInterface
 {
@@ -24,6 +25,7 @@ interface OtpManagementInterface
      * @param string $lastname
      * @param string $email
      * @param string $password
+     * @param \Astrotri\OtpRegistration\Api\Data\OnboardRequestInterface|null $onboardRequest
      * @return \Astrotri\OtpRegistration\Api\Data\ApiResponseInterface
      */
     public function otpRegistration(
@@ -32,7 +34,8 @@ interface OtpManagementInterface
         $firstname,
         $lastname,
         $email,
-        $password =null
+        $password =null,
+        OnboardRequestInterface $onboardRequest = null
     );
 
     /**
