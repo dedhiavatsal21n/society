@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/otp/send" method="POST">
+        <service class="Astrotri\OtpRegistration\Api\OtpManagementInterface" method="sendOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/otp/register" method="POST">
+        <service class="Astrotri\OtpRegistration\Api\OtpManagementInterface" method="otpRegistration"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/otp/login" method="POST">
+        <service class="Astrotri\OtpRegistration\Api\OtpManagementInterface" method="otpLogin"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

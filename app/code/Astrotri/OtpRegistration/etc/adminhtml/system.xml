@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="otp_settings" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>OTP Settings</label>
+            <tab>customer</tab>
+            <resource>Magento_Customer::config_customer</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="otp_expiry" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>OTP Expiry (minutes)</label>
+                </field>
+                <field id="otp_failure_lock_time" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>OTP Failure Lock Time (minutes)</label>
+                </field>
+                <field id="otp_limit_minutes" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>OTP Limit Time (Mobile)</label>
+                    <comment>OTP Rate Limit Time in minutes</comment>
+                </field>
+                <field id="otp_limit_per_minute" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Maximum OTP Request (Mobile)</label>
+                </field>
+                <field id="otp_block_duration" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>OTP Block Duration (Mobile)</label>
+                    <comment>Expiry/Block Duration in minutes</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
