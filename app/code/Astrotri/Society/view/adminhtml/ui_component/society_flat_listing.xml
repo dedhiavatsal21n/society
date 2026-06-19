@@ -1,1 +1,319 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">society_flat_listing.society_flat_listing_data_source</item>
+			<item name="deps" xsi:type="string">society_flat_listing.society_flat_listing_data_source</item>
+		</item>
+		<item name="spinner" xsi:type="string">society_flat_listing_columns</item>
+		<item name="buttons" xsi:type="array">
+			<item name="add" xsi:type="array">
+				<item name="name" xsi:type="string">add</item>
+				<item name="label" xsi:type="string" translate="true">Add New Flat</item>
+				<item name="class" xsi:type="string">primary</item>
+				<item name="url" xsi:type="string">*/*/newAction</item>
+			</item>
+		</item>
+	</argument>
+
+	<dataSource name="society_flat_listing_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Astrotri\Society\Ui\Component\Flat\Listing\DataProvider</argument>
+			<argument name="name" xsi:type="string">society_flat_listing_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">flat_id</argument>
+			<argument name="requestFieldName" xsi:type="string">id</argument>
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+					<item name="update_url" xsi:type="url" path="mui/index/render"/>
+					<item name="storageConfig" xsi:type="array">
+						<item name="indexField" xsi:type="string">flat_id</item>
+					</item>
+				</item>
+			</argument>
+		</argument>
+	</dataSource>
+
+	<listingToolbar name="listing_top">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="sticky" xsi:type="boolean">true</item>
+				<item name="template" xsi:type="string">ui/grid/toolbar</item>
+			</item>
+		</argument>
+		<columnsControls name="columns_controls">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="columnsData" xsi:type="array">
+						<item name="provider" xsi:type="string">society_flat_listing.society_flat_listing.society_flat_listing_columns</item>
+					</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
+					<item name="displayArea" xsi:type="string">dataGridActions</item>
+				</item>
+			</argument>
+		</columnsControls>
+		<bookmark name="bookmarks"/>
+		<filterSearch name="fulltext"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+
+	<columns name="society_flat_listing_columns">
+		
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="storageConfig" xsi:type="array">
+					<item name="provider" xsi:type="string">society_flat_listing.society_flat_listing.listing_top.bookmarks</item>
+					<item name="namespace" xsi:type="string">current</item>
+				</item>
+				<item name="childDefaults" xsi:type="array">
+					<item name="controlVisibility" xsi:type="boolean">true</item>
+
+					<item name="fieldAction" xsi:type="array">
+						<item name="provider" xsi:type="string">society_flat_listing.society_flat_listing.society_flat_listing_columns.actions</item>
+						<item name="target" xsi:type="string">applyAction</item>
+						<item name="params" xsi:type="array">
+							<item name="0" xsi:type="string">edit</item>
+							<item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+						</item>
+					</item>
+
+					<item name="storageConfig" xsi:type="array">
+						<item name="provider" xsi:type="string">society_flat_listing.society_flat_listing.listing_top.bookmarks</item>
+						<item name="root" xsi:type="string">columns.${ $.index }</item>
+						<item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
+					</item>
+				</item>
+			</item>
+		</argument>
+
+		<column name="flat_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">textRange</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">20</item>
+					<item name="sorting" xsi:type="string">desc</item>
+					<item name="label" xsi:type="string" translate="true">Flat ID</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="tower_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">textRange</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">30</item>
+					<item name="sorting" xsi:type="string">desc</item>
+					<item name="label" xsi:type="string" translate="true">Tower ID</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="society_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">textRange</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">40</item>
+					<item name="sorting" xsi:type="string">desc</item>
+					<item name="label" xsi:type="string" translate="true">Society ID</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="flat_number">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">50</item>
+					<item name="label" xsi:type="string" translate="true">Flat Number</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="floor_number">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">60</item>
+					<item name="label" xsi:type="string" translate="true">Floor Number</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="unit_type">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">70</item>
+					<item name="label" xsi:type="string" translate="true">Unit Type</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="carpet_area_sqft">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">80</item>
+					<item name="label" xsi:type="string" translate="true">Carpet Area Sqft</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="buildup_area_sqft">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">90</item>
+					<item name="label" xsi:type="string" translate="true">Buildup Area Sqft</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="super_builtup_area_sqft">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">100</item>
+					<item name="label" xsi:type="string" translate="true">Super Builtup Area Sqft</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="bedroom_count">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">110</item>
+					<item name="label" xsi:type="string" translate="true">Bedroom Count</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="bathroom_count">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">120</item>
+					<item name="label" xsi:type="string" translate="true">Bathroom Count</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="balcony_count">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">130</item>
+					<item name="label" xsi:type="string" translate="true">Balcony Count</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="intercom_number">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">140</item>
+					<item name="label" xsi:type="string" translate="true">Intercom Number</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="occupancy_status" class="Astrotri\Society\Ui\Component\Flat\Listing\Column\OccupancyColumn">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Astrotri\Society\Model\Flat\Config\Source\OccupancyOptions</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="sortOrder" xsi:type="number">150</item>
+					<item name="label" xsi:type="string" translate="true">Occupancy Status</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="ownership_type" class="Astrotri\Society\Ui\Component\Flat\Listing\Column\OwnershipColumn">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Astrotri\Society\Model\Flat\Config\Source\OwnershipOptions</item>
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">select</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="sortOrder" xsi:type="number">160</item>
+					<item name="label" xsi:type="string" translate="true">Ownership Type</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">dateRange</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+					<item name="dataType" xsi:type="string">date</item>
+					<item name="sortOrder" xsi:type="number">170</item>
+					<item name="label" xsi:type="string" translate="true">Created At</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">dateRange</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+					<item name="dataType" xsi:type="string">date</item>
+					<item name="sortOrder" xsi:type="number">180</item>
+					<item name="label" xsi:type="string" translate="true">Updated At</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+	</columns>
+
+</listing>

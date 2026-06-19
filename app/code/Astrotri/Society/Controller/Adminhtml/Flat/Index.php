@@ -5,7 +5,7 @@ namespace Astrotri\Society\Controller\Adminhtml\Flat;
 use \Magento\Backend\App\Action\Context;
 use \Magento\Framework\View\Result\PageFactory;
 
-class Index extends AbstractSociety
+class Index extends AbstractFlat
 {
 	protected $resultPageFactory;
 
