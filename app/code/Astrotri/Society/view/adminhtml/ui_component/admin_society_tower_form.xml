@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">admin_society_tower_form.admin_society_tower_form_data_source</item>
+			<item name="deps" xsi:type="string">admin_society_tower_form.admin_society_tower_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">Society Tower Form</item>
+		<item name="config" xsi:type="array">
+			<item name="dataScope" xsi:type="string">data</item>
+			<item name="namespace" xsi:type="string">admin_society_tower_form</item>
+		</item>
+	</argument>
+
+	<settings>
+		<buttons>
+			<button name="back" class="Astrotri\Society\Block\Adminhtml\Tower\BackButton"/>
+			<button name="reset" class="Astrotri\Society\Block\Adminhtml\Tower\ResetButton"/>
+			<button name="delete" class="Astrotri\Society\Block\Adminhtml\Tower\DeleteButton"/>
+			<button name="save" class="Astrotri\Society\Block\Adminhtml\Tower\SaveButton"/>
+		</buttons>
+		<namespace>admin_society_tower_form</namespace>
+		<dataScope>data</dataScope>
+		<layout>
+			<navContainerName>left</navContainerName>
+			<type>tabs</type>
+		</layout>
+		<deps>
+			<dep>admin_society_tower_form.admin_society_tower_form_data_source</dep>
+		</deps>
+	</settings>
+
+	<dataSource name="admin_society_tower_form_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Astrotri\Society\Ui\Component\Tower\Form\DataProvider</argument>
+			<argument name="name" xsi:type="string">admin_society_tower_form_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">tower_id</argument>
+			<argument name="requestFieldName" xsi:type="string">id</argument>
+		</argument>
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+				<item name="submit_url" path="*/*/save" xsi:type="url" />
+			</item>
+		</argument>
+	</dataSource>
+
+	<fieldset name="admin_society_tower_form">
+		
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="collapsible" xsi:type="boolean">false</item>
+				<item name="label" xsi:type="string" translate="true">Society Tower Details</item>
+				<item name="sortOrder" xsi:type="number">20</item>
+			</item>
+		</argument>
+
+		<field name="tower_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="visible" xsi:type="boolean">false</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">tower</item>
+					<item name="dataScope" xsi:type="string">id</item>
+					<item name="sortOrder" xsi:type="number">30</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="society_id">
+			<argument name="data" xsi:type="array">
+				<!-- <item name="options" xsi:type="object">Astrotri\Society\Model\Society\Config\Source\SocietyOptions</item> -->
+				<item name="config" xsi:type="array">
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="label" xsi:type="string">Society</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="filterOptions" xsi:type="boolean">true</item>
+					<item name="source" xsi:type="string">tower</item>
+					<item name="dataScope" xsi:type="string">society_id</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">40</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="name">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Tower Name</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">tower</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">50</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="code">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Tower Code</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">tower</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">60</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="total_floors">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Total Floors</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">tower</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-digits" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">70</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="total_units">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Total Units</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">tower</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">80</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="total_units_per_floor">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Total Units Per Floor</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">tower</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-digits" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">90</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="lift_count">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Lift Count</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">tower</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-digits" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">100</item>
+				</item>
+			</argument>
+		</field>
+
+	</fieldset>
+
+</form>

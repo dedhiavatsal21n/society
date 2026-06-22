@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Astrotri_Core::main" title="Astrotri" translate="title" module="Astrotri_Core" sortOrder="900" resource="Astrotri_Core::main"/>
+
+		<add id="Astrotri_Core::society_management_project" title="Society Management Project" translate="title" module="Astrotri_Core" sortOrder="10" parent="Astrotri_Core::main" resource="Astrotri_Core::society_management_project"/>
+	</menu>
+</config>

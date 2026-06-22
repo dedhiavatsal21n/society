@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">society_tower_listing.society_tower_listing_data_source</item>
+			<item name="deps" xsi:type="string">society_tower_listing.society_tower_listing_data_source</item>
+		</item>
+		<item name="spinner" xsi:type="string">society_tower_listing_columns</item>
+		<item name="buttons" xsi:type="array">
+			<item name="add" xsi:type="array">
+				<item name="name" xsi:type="string">add</item>
+				<item name="label" xsi:type="string" translate="true">Add New Tower</item>
+				<item name="class" xsi:type="string">primary</item>
+				<item name="url" xsi:type="string">*/*/newAction</item>
+			</item>
+		</item>
+	</argument>
+
+	<dataSource name="society_tower_listing_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Astrotri\Society\Ui\Component\Tower\Listing\DataProvider</argument>
+			<argument name="name" xsi:type="string">society_tower_listing_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">tower_id</argument>
+			<argument name="requestFieldName" xsi:type="string">id</argument>
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+					<item name="update_url" xsi:type="url" path="mui/index/render"/>
+					<item name="storageConfig" xsi:type="array">
+						<item name="indexField" xsi:type="string">tower_id</item>
+					</item>
+				</item>
+			</argument>
+		</argument>
+	</dataSource>
+
+	<listingToolbar name="listing_top">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="sticky" xsi:type="boolean">true</item>
+				<item name="template" xsi:type="string">ui/grid/toolbar</item>
+			</item>
+		</argument>
+		<columnsControls name="columns_controls">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="columnsData" xsi:type="array">
+						<item name="provider" xsi:type="string">society_tower_listing.society_tower_listing.society_tower_listing_columns</item>
+					</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
+					<item name="displayArea" xsi:type="string">dataGridActions</item>
+				</item>
+			</argument>
+		</columnsControls>
+		<bookmark name="bookmarks"/>
+		<filterSearch name="fulltext"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+
+	<columns name="society_tower_listing_columns">
+		
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="storageConfig" xsi:type="array">
+					<item name="provider" xsi:type="string">society_tower_listing.society_tower_listing.listing_top.bookmarks</item>
+					<item name="namespace" xsi:type="string">current</item>
+				</item>
+				<item name="childDefaults" xsi:type="array">
+					<item name="controlVisibility" xsi:type="boolean">true</item>
+
+					<item name="fieldAction" xsi:type="array">
+						<item name="provider" xsi:type="string">society_tower_listing.society_tower_listing.society_tower_listing_columns.actions</item>
+						<item name="target" xsi:type="string">applyAction</item>
+						<item name="params" xsi:type="array">
+							<item name="0" xsi:type="string">edit</item>
+							<item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+						</item>
+					</item>
+
+					<item name="storageConfig" xsi:type="array">
+						<item name="provider" xsi:type="string">society_tower_listing.society_tower_listing.listing_top.bookmarks</item>
+						<item name="root" xsi:type="string">columns.${ $.index }</item>
+						<item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
+					</item>
+				</item>
+			</item>
+		</argument>
+
+		<column name="tower_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">textRange</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">20</item>
+					<item name="sorting" xsi:type="string">desc</item>
+					<item name="label" xsi:type="string" translate="true">Tower ID</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="society_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">textRange</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">30</item>
+					<item name="sorting" xsi:type="string">desc</item>
+					<item name="label" xsi:type="string" translate="true">Society ID</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="name">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">40</item>
+					<item name="label" xsi:type="string" translate="true">Tower Name</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="code">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">50</item>
+					<item name="label" xsi:type="string" translate="true">Tower Code</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="total_floors">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">60</item>
+					<item name="label" xsi:type="string" translate="true">Total Floors</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="total_units">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">70</item>
+					<item name="label" xsi:type="string" translate="true">Total Units</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="total_units_per_floor">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">80</item>
+					<item name="label" xsi:type="string" translate="true">Total Units Per Floor</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="lift_count">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="sortOrder" xsi:type="number">90</item>
+					<item name="label" xsi:type="string" translate="true">Lift Count</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">dateRange</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+					<item name="dataType" xsi:type="string">date</item>
+					<item name="sortOrder" xsi:type="number">100</item>
+					<item name="label" xsi:type="string" translate="true">Created At</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+		<column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">dateRange</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+					<item name="dataType" xsi:type="string">date</item>
+					<item name="sortOrder" xsi:type="number">110</item>
+					<item name="label" xsi:type="string" translate="true">Updated At</item>
+					<item name="export" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+		</column>
+
+	</columns>
+
+</listing>

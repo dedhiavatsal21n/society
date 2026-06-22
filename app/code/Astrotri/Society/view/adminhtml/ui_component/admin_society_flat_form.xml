@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">admin_society_flat_form.admin_society_flat_form_data_source</item>
+			<item name="deps" xsi:type="string">admin_society_flat_form.admin_society_flat_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">Society Flat Form</item>
+		<item name="config" xsi:type="array">
+			<item name="dataScope" xsi:type="string">data</item>
+			<item name="namespace" xsi:type="string">admin_society_flat_form</item>
+		</item>
+	</argument>
+
+	<settings>
+		<buttons>
+			<button name="back" class="Astrotri\Society\Block\Adminhtml\Flat\BackButton"/>
+			<button name="reset" class="Astrotri\Society\Block\Adminhtml\Flat\ResetButton"/>
+			<button name="delete" class="Astrotri\Society\Block\Adminhtml\Flat\DeleteButton"/>
+			<button name="save" class="Astrotri\Society\Block\Adminhtml\Flat\SaveButton"/>
+		</buttons>
+		<namespace>admin_society_flat_form</namespace>
+		<dataScope>data</dataScope>
+		<layout>
+			<navContainerName>left</navContainerName>
+			<type>tabs</type>
+		</layout>
+		<deps>
+			<dep>admin_society_flat_form.admin_society_flat_form_data_source</dep>
+		</deps>
+	</settings>
+
+	<dataSource name="admin_society_flat_form_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Astrotri\Society\Ui\Component\Flat\Form\DataProvider</argument>
+			<argument name="name" xsi:type="string">admin_society_flat_form_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">flat_id</argument>
+			<argument name="requestFieldName" xsi:type="string">id</argument>
+		</argument>
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+				<item name="submit_url" path="*/*/save" xsi:type="url" />
+			</item>
+		</argument>
+	</dataSource>
+
+	<fieldset name="admin_society_flat_form">
+		
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="collapsible" xsi:type="boolean">false</item>
+				<item name="label" xsi:type="string" translate="true">Society Flat Details</item>
+				<item name="sortOrder" xsi:type="number">20</item>
+			</item>
+		</argument>
+
+		<field name="flat_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="visible" xsi:type="boolean">false</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="dataScope" xsi:type="string">id</item>
+					<item name="sortOrder" xsi:type="number">30</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="society_id">
+			<argument name="data" xsi:type="array">
+				<!-- <item name="options" xsi:type="object">Astrotri\Society\Model\Society\Config\Source\SocietyOptions</item> -->
+				<item name="config" xsi:type="array">
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="label" xsi:type="string">Society</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="filterOptions" xsi:type="boolean">true</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="dataScope" xsi:type="string">society_id</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">40</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="tower_id">
+			<argument name="data" xsi:type="array">
+				<!-- <item name="options" xsi:type="object">Astrotri\Society\Model\Society\Config\Source\SocietyOptions</item> -->
+				<item name="config" xsi:type="array">
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="label" xsi:type="string">Tower</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="filterOptions" xsi:type="boolean">true</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="dataScope" xsi:type="string">tower_id</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">50</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="flat_number">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Flat Number</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-digits" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">60</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="floor_number">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Floor Number</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-digits" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">70</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="unit_type">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Unit Type</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">80</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="carpet_area_sqft">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Carpet Area (Sq Ft)</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">90</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="buildup_area_sqft">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Buildup Area (Sq Ft)</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">100</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="super_builtup_area_sqft">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Super Builtup Area (Sq Ft)</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">110</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="bedroom_count">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Bedroom Count</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-digits" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">120</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="bathroom_count">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Bathroom Count</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-digits" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">130</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="balcony_count">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Balcony Count</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">unit</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-digits" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">140</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="intercom_number">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Intercom Number</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+						<item name="validate-digits" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">150</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="occupancy_status">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Occupancy Status</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">160</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="ownership_type">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string">Ownership Type</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="source" xsi:type="string">flat</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">170</item>
+				</item>
+			</argument>
+		</field>
+
+	</fieldset>
+
+</form>

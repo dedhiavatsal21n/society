@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+	<table name="smp_society" resource="default" engine="innodb" comment="Society Master Table">
+
+		<column xsi:type="int" name="society_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Society ID"/>
+
+		<column xsi:type="varchar" name="name" nullable="false" length="255" comment="Society Name"/>
+		<column xsi:type="varchar" name="code" nullable="false" length="100" comment="Society Code"/>
+		<column xsi:type="varchar" name="logo" nullable="true" length="255" comment="Society Logo"/>
+
+		<column xsi:type="text" name="address" nullable="true" comment="Address"/>
+		<column xsi:type="varchar" name="city" nullable="true" length="100" comment="City"/>
+		<column xsi:type="varchar" name="state" nullable="true" length="100" comment="State"/>
+		<column xsi:type="varchar" name="pincode" nullable="true" length="20" comment="Pincode"/>
+		<column xsi:type="varchar" name="country" nullable="true" length="100" comment="Country"/>
+
+		<column xsi:type="decimal" name="latitude" scale="8" precision="10" nullable="true" comment="Latitude"/>
+		<column xsi:type="decimal" name="longitude" scale="8" precision="11" nullable="true" comment="Longitude"/>
+
+		<column xsi:type="varchar" name="phone" nullable="true" length="20" comment="Phone"/>
+		<column xsi:type="varchar" name="email" nullable="true" length="255" comment="Email"/>
+
+		<column xsi:type="varchar" name="reg_number" nullable="true" length="100" comment="Registration Number"/>
+		<column xsi:type="varchar" name="pan_number" nullable="true" length="50" comment="PAN Number"/>
+		<column xsi:type="varchar" name="gst_number" nullable="true" length="50" comment="GST Number"/>
+
+		<column xsi:type="date" name="formation_date" nullable="true" comment="Formation Date"/>
+
+		<column xsi:type="smallint" name="status" nullable="false" default="1" comment="Status"/>
+
+		<column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created At"/>
+		<column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="society_id"/>
+		</constraint>
+
+	</table>
+
+	<table name="smp_society_tower" resource="default" engine="innodb" comment="Society Tower Table">
+
+		<column xsi:type="int" name="tower_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Tower ID"/>
+
+		<column xsi:type="int" name="society_id" padding="10" unsigned="true" nullable="false" comment="Society ID"/>
+
+		<column xsi:type="varchar" name="name" nullable="false" length="255" comment="Tower Name"/>
+		<column xsi:type="varchar" name="code" nullable="false" length="100" comment="Tower Code"/>
+
+		<column xsi:type="int" name="total_floors" unsigned="true" nullable="true" comment="Total Floors"/>
+		<column xsi:type="int" name="total_units" unsigned="true" nullable="true" comment="Total Units"/>
+		<column xsi:type="int" name="total_units_per_floor" unsigned="true" nullable="true" comment="Units Per Floor"/>
+
+		<column xsi:type="int" name="lift_count" unsigned="true" nullable="true" comment="Lift Count"/>
+
+		<column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created At"/>
+		<column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="tower_id"/>
+		</constraint>
+
+		<constraint xsi:type="foreign"
+			referenceId="SMP_TOWER_SOCIETY_ID_SMP_SOCIETY_SOCIETY_ID"
+			table="smp_society_tower"
+			column="society_id"
+			referenceTable="smp_society"
+			referenceColumn="society_id"
+			onDelete="CASCADE"/>
+
+		<index referenceId="SMP_TOWER_SOCIETY_ID_IDX" indexType="btree">
+			<column name="society_id"/>
+		</index>
+
+	</table>
+
+	<table name="smp_society_flat" resource="default" engine="innodb" comment="Society Flat Table">
+
+		<column xsi:type="int" name="flat_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Flat ID"/>
+
+		<column xsi:type="int" name="society_id" padding="10" unsigned="true" nullable="false" comment="Society ID"/>
+		<column xsi:type="int" name="tower_id" padding="10" unsigned="true" nullable="false" comment="Tower ID"/>
+
+		<column xsi:type="varchar" name="flat_number" nullable="false" length="50" comment="Flat Number"/>
+		<column xsi:type="int" name="floor_number" nullable="true" comment="Floor Number"/>
+
+		<column xsi:type="varchar" name="unit_type" nullable="true" length="50" comment="Unit Type"/>
+
+		<column xsi:type="decimal" name="carpet_area_sqft" precision="12" scale="2" nullable="true" comment="Carpet Area Sqft"/>
+		<column xsi:type="decimal" name="buildup_area_sqft" precision="12" scale="2" nullable="true" comment="Buildup Area Sqft"/>
+		<column xsi:type="decimal" name="super_builtup_area_sqft" precision="12" scale="2" nullable="true" comment="Super Builtup Area Sqft"/>
+
+		<column xsi:type="int" name="bedroom_count" unsigned="true" nullable="true" comment="Bedroom Count"/>
+		<column xsi:type="int" name="bathroom_count" unsigned="true" nullable="true" comment="Bathroom Count"/>
+		<column xsi:type="int" name="balcony_count" unsigned="true" nullable="true" comment="Balcony Count"/>
+
+		<column xsi:type="varchar" name="intercom_number" nullable="true" length="50" comment="Intercom Number"/>
+
+		<column xsi:type="smallint" name="occupancy_status" nullable="false" default="1" comment="Occupancy Status"/>
+		<column xsi:type="smallint" name="ownership_type" nullable="false" default="1" comment="Ownership Type"/>
+
+		<column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created At"/>
+		<column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="flat_id"/>
+		</constraint>
+
+		<constraint xsi:type="foreign"
+			referenceId="SMP_FLAT_SOCIETY_ID_SMP_SOCIETY_SOCIETY_ID"
+			table="smp_society_flat"
+			column="society_id"
+			referenceTable="smp_society"
+			referenceColumn="society_id"
+			onDelete="CASCADE"/>
+
+		<constraint xsi:type="foreign"
+			referenceId="SMP_FLAT_TOWER_ID_SMP_TOWER_TOWER_ID"
+			table="smp_society_flat"
+			column="tower_id"
+			referenceTable="smp_society_tower"
+			referenceColumn="tower_id"
+			onDelete="CASCADE"/>
+
+		<index referenceId="SMP_FLAT_SOCIETY_ID_IDX" indexType="btree">
+			<column name="society_id"/>
+		</index>
+
+		<index referenceId="SMP_FLAT_TOWER_ID_IDX" indexType="btree">
+			<column name="tower_id"/>
+		</index>
+
+	</table>
+
+</schema>
