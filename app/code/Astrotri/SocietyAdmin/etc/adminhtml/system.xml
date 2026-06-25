@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+
+    <system>
+        <tab id="astrotri" translate="label" sortOrder="100">
+            <label>Astrotri</label>
+        </tab>
+
+        <section id="societyadmin" translate="label" sortOrder="10"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Society Admin</label>
+            <tab>astrotri</tab>
+            <resource>Astrotri_SocietyAdmin::config</resource>
+
+            <group id="login_settings" translate="label" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Login Settings</label>
+
+                <field id="allowed_customer_group"
+                       translate="label"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Allowed Customer Group</label>
+                    <source_model>Magento\Customer\Model\Config\Source\Group</source_model>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

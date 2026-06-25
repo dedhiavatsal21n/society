@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/config.xsd">
+    <default>
+        <societyadmin>
+            <login_settings>
+                <allowed_customer_group>2</allowed_customer_group>
+            </login_settings>
+        </societyadmin>
+    </default>
+</config>
