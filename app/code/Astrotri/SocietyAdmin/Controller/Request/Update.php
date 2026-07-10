@@ -14,6 +14,7 @@ class Update implements HttpPostActionInterface
     private $request;
     protected $resultJsonFactory;
     protected $requestFactory;
+    protected $residentUserFactory;
 
     public function __construct(
         JsonFactory $resultJsonFactory,
@@ -45,6 +46,26 @@ class Update implements HttpPostActionInterface
             switch ($action) {
 
                 case 'approve':
+                    // Check if resident already exists
+                    $resident = $this->residentUserFactory->create()->getCollection()
+                        ->addFieldToFilter('customer_id', $model->getCustomerId())
+                        ->addFieldToFilter('flat_id', $model->getFlatId())
+                        ->getFirstItem();
+
+                    if (!$resident->getId()) {
+                        $resident = $this->residentUserFactory->create();
+                        $resident->setData([
+                            'customer_id' => $model->getCustomerId(),
+                            'society_id'  => $model->getSocietyId(),
+                            'tower_id'    => $model->getTowerId(),
+                            'flat_id'     => $model->getFlatId(),
+                            'relation'    => $model->getRelation(),
+                            'move_in_date'=> $model->getMoveInDate(),
+                            'move_out_date'=> $model->getMoveOutDate(),
+                            'status'      => 'active'
+                        ]);
+                        $resident->save();
+                    }
                     $model->setStatus('approved');
                     $model->save();
                     break;
