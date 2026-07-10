@@ -1,0 +1,133 @@
+<?php
+$collection = $block->getCollection();
+?>
+
+<div class="block block-dashboard-info">
+
+    <div class="block-title">
+        <strong><?= __('Flat Onboarding Requests') ?></strong>
+    </div>
+
+    <div class="block-content">
+
+        <?php if ($collection->getSize()): ?>
+
+            <table class="data table table-order-items">
+
+                <thead>
+                <tr>
+                    <th><?= __('Request #') ?></th>
+                    <th><?= __('Flat') ?></th>
+                    <th><?= __('Relation') ?></th>
+                    <th><?= __('Move In') ?></th>
+                    <th><?= __('Status') ?></th>
+                    <th><?= __('Requested On') ?></th>
+                    <th><?= __('Action') ?></th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <?php foreach ($collection as $item): ?>
+
+                    <tr>
+
+                        <td><?= $block->escapeHtml($item->getUserOnboardRequestId()) ?></td>
+
+                        <td><?= $block->escapeHtml($item->getFlatId()) ?></td>
+
+                        <td><?= ucfirst($block->escapeHtml($item->getRelation())) ?></td>
+
+                        <td><?= $block->escapeHtml($item->getMoveInDate()) ?></td>
+
+                        <td><?= ucfirst($block->escapeHtml($item->getStatus())) ?></td>
+
+                        <td><?= $block->escapeHtml($item->getCreatedAt()) ?></td>
+
+                        <td>
+                            <select class="request-action"
+                                    data-request-id="<?= (int)$item->getUserOnboardRequestId(); ?>">
+
+                                <?php foreach ($block->getActionsList() as $value => $label): ?>
+
+                                    <option value="<?= $block->escapeHtmlAttr($value); ?>">
+                                        <?= $block->escapeHtml($label); ?>
+                                    </option>
+
+                                <?php endforeach; ?>
+
+                            </select>
+                        </td>
+
+                    </tr>
+
+                <?php endforeach; ?>
+
+                </tbody>
+
+            </table>
+
+        <?php else: ?>
+
+            <div class="message info empty">
+                <span><?= __('No onboarding requests found.') ?></span>
+            </div>
+
+        <?php endif; ?>
+
+    </div>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {}
+        }
+    }
+    </script>
+
+    <script>
+    require([
+        'jquery',
+        'mage/url'
+    ], function ($, urlBuilder) {
+
+        $('.request-action').on('change', function () {
+
+            var action = $(this).val();
+
+            if (!action) {
+                return;
+            }
+
+            var requestId = $(this).data('request-id');
+            var element = $(this);
+
+            $.ajax({
+                url: '<?= $block->getUrl("societyadmin/request/update"); ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    request_id: requestId,
+                    action: action
+                },
+                showLoader: true,
+                success: function (response) {
+
+                    alert(response.message);
+
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        element.val('');
+                    }
+                },
+                error: function () {
+                    alert('Something went wrong.');
+                    element.val('');
+                }
+            });
+
+        });
+
+    });
+    </script>
+</div>

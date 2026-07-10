@@ -167,18 +167,6 @@ class OtpManagement implements OtpManagementInterface
             /* optional login audit*/
             //$this->otpHelper->saveLoginAuditLog('OTP',$mobile,'success',null,'registration');
 
-            // Prepare event data
-
-            /*$eventData = new DataObject([
-                'customer_id'  => $createdCustomer->getId(),
-                'society_id'   => $societyId,
-                'tower_id'     => $towerId,
-                'flat_id'      => $flatId,
-                'relation'     => $relation,
-                'move_in_date' => $moveInDate,
-                'move_out_date'=> $moveOutDate
-            ]);*/
-
             // Dispatch custom event
             $this->eventManager->dispatch(
                 'customer_otp_registration_success',
