@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="customer_otp" resource="default" engine="innodb">
+        <column xsi:type="int" name="entity_id" identity="true" nullable="false"/>
+        <column xsi:type="varchar" name="mobile" length="20" nullable="false"/>
+        <column xsi:type="varchar" name="otp" length="10"/>
+        <column xsi:type="varchar" name="flag" length="10"/>
+        <column xsi:type="int" name="is_used" nullable="false" default="0" comment="is used" />
+        <column xsi:type="timestamp" name="created_at" default="CURRENT_TIMESTAMP"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="otp_login" resource="default" engine="innodb" comment="OTP Login Tracking">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="mobile" length="20" nullable="false" comment="Mobile Number"/>
+        <column xsi:type="int" name="failure" nullable="false" default="0" comment="Failure Count"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="true" on_update="true" comment="Updated At"/>
+        <column xsi:type="timestamp" name="lock_expire" nullable="true" comment="Lock Expire Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="IDX_OTP_LOGIN_MOBILE">
+            <column name="mobile"/>
+        </index>
+    </table>
+    <table name="sp_resident_user" resource="default" engine="innodb" comment="Resident User">
+        <column xsi:type="int" name="ru_id" unsigned="true" nullable="false" identity="true" comment="Resident User ID"/>
+        <column xsi:type="int" name="customer_id" unsigned="true" nullable="false" comment="Customer ID"/>
+        <column xsi:type="int" name="society_id" unsigned="true" nullable="false" comment="Society ID"/>
+        <column xsi:type="int" name="tower_id" unsigned="true" nullable="false" comment="Tower ID"/>
+        <column xsi:type="int" name="flat_id" unsigned="true" nullable="false" comment="Flat ID"/>
+        <column xsi:type="varchar" name="relation" nullable="false" length="20" comment="Owner Tenant Family"/>
+        <column xsi:type="date" name="move_in_date" nullable="true" comment="Move In Date"/>
+        <column xsi:type="date" name="move_out_date" nullable="true" comment="Move Out Date"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="20" default="active" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="ru_id"/>
+        </constraint>
+        <index referenceId="SP_RESIDENT_USER_CUSTOMER_ID" indexType="btree">
+            <column name="customer_id"/>
+        </index>
+    </table>
+    <table name="sp_user_onboard_request" resource="default" engine="innodb" comment="User Onboard Request">
+        <column xsi:type="int" name="user_onboard_request_id" unsigned="true" nullable="false" identity="true" comment="Request ID"/>
+        <column xsi:type="int" name="customer_id" unsigned="true" nullable="false" comment="Customer ID"/>
+        <column xsi:type="int" name="society_id" unsigned="true" nullable="false" comment="Society ID"/>
+        <column xsi:type="int" name="tower_id" unsigned="true" nullable="false" comment="Tower ID"/>
+        <column xsi:type="int" name="flat_id" unsigned="true" nullable="false" comment="Flat ID"/>
+        <column xsi:type="varchar" name="relation" nullable="false" length="20" comment="Owner Tenant Family"/>
+        <column xsi:type="date" name="move_in_date" nullable="true" comment="Move In Date"/>
+        <column xsi:type="date" name="move_out_date" nullable="true" comment="Move Out Date"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="20" default="pending" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="user_onboard_request_id"/>
+        </constraint>
+        <index referenceId="SP_USER_ONBOARD_REQUEST_CUSTOMER_ID" indexType="btree">
+            <column name="customer_id"/>
+        </index>
+    </table>
+</schema>
